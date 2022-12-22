@@ -1,0 +1,6 @@
+name : my-github-workflow
+
+on :
+  push :
+    branches :
+    - master
