@@ -1,0 +1,6 @@
+Name : Github-Actions
+
+on :
+  push :
+  - master
+  - feature
