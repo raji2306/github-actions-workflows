@@ -1,0 +1,11 @@
+name: Java CI with Maven
+
+run-name : Java CI with Maven Project
+
+#Concurrency Testing 
+
+on:
+  push:
+    branches:  
+      - master 
+      - '!feature'
