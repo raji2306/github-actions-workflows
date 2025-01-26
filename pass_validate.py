@@ -13,10 +13,10 @@ password = os.getenv('BINDPASSWORD')
 tool_user = os.getenv('TOOLUSER')
 tool_password = os.getenv('TOOLPASS')
 
-a = r"{user}"
-b = r"{password}"
-c = r"{tool_user}"
-d = r"{tool_password}"
+a = user
+b = password
+c = tool_user
+d = tool_password
 
 print(f"User: {a}")
 print(f"Password: {b}")
