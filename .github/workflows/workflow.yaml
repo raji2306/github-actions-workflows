@@ -32,9 +32,8 @@ jobs:
         shell: bash
         run: |
           python3 - <<EOF
-          import sys
-          import os
           
+          import os
           # Retrieve sensitive data from GitHub Actions inputs
           user = os.getenv('INPUT_USER')
           password = os.getenv('INPUT_PASSWORD')
@@ -43,8 +42,10 @@ jobs:
           
           # Mask sensitive values by printing them in a masked form
           def mask_sensitive_data(data):
+              if data is None:
+                  return "None"  # Or you can return an empty string or some other indicator
               return '*' * len(data)
-  
+          
           # Mask the inputs (not printing GitHub Actions format)
           masked_user = mask_sensitive_data(user)
           masked_password = mask_sensitive_data(password)
@@ -57,6 +58,7 @@ jobs:
           print(f"Masked Tool User: {masked_tool_user}")
           print(f"Masked Tool Password: {masked_tool_password}")
           EOF
+         
 
       # - name: Export faceless user and password
       #   shell: bash
