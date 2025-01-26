@@ -28,22 +28,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Export faceless user and password
-        shell: bash
-        run: |
+      # - name: Export faceless user and password
+      #   shell: bash
+      #   run: |
         
-          # # # Retrieve inputs
-          # # echo "BINDUSER=${{ github.event.inputs.user }}" >> $GITHUB_ENV
-          # # echo "BINDPASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
-          # # echo "TOOLUSER=${{ github.event.inputs.tool_user }}" >> $GITHUB_ENV
-          # # echo "TOOLPASS=${{ github.event.inputs.tool_pass }}" >> $GITHUB_ENV
-          # w
+      #     # # # Retrieve inputs
+      #     # # echo "BINDUSER=${{ github.event.inputs.user }}" >> $GITHUB_ENV
+      #     # # echo "BINDPASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
+      #     # # echo "TOOLUSER=${{ github.event.inputs.tool_user }}" >> $GITHUB_ENV
+      #     # # echo "TOOLPASS=${{ github.event.inputs.tool_pass }}" >> $GITHUB_ENV
+      #     # w
           
-          # Mask sensitive values
-          echo "::add-mask::${{ github.event.inputs.user }}"
-          echo "::add-mask::${{ github.event.inputs.password }}"
-          echo "::add-mask::${{ github.event.inputs.tool_user }}"
-          echo "::add-mask::${{ github.event.inputs.tool_pass }}"
+      #     # Mask sensitive values
+      #     echo "::add-mask::${{ github.event.inputs.user }}"
+      #     echo "::add-mask::${{ github.event.inputs.password }}"
+      #     echo "::add-mask::${{ github.event.inputs.tool_user }}"
+      #     echo "::add-mask::${{ github.event.inputs.tool_pass }}"
           
       - name: Run Python script
         shell: bash
