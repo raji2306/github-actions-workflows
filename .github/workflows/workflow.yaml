@@ -32,17 +32,17 @@ jobs:
         shell: bash
         run: |
           # Retrieve inputs
-          rawUser="${{ github.event.inputs.user }}"
-          rawPassword="${{ github.event.inputs.password }}"
-          rawToolUser="${{ github.event.inputs.tool_user }}"
-          rawToolPass="${{ github.event.inputs.tool_pass }}"
+          echo "BINDUSER=${{ github.event.inputs.user }}" >> $GITHUB_ENV
+          echo "BINDPASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
+          echo "TOOLUSER=${{ github.event.inputs.tool_user }}" >> $GITHUB_ENV
+          echo "TOOLPASS=${{ github.event.inputs.tool_pass }}" >> $GITHUB_ENV
           
           # Mask sensitive values
-          echo "::add-mask::${rawUser}"
-          echo "::add-mask::${rawPassword}"
-          echo "::add-mask::${rawToolUser}"
-          echo "::add-mask::${rawToolPass}"
-
+          echo "::add-mask::${{ github.event.inputs.user }}"
+          echo "::add-mask::${{ github.event.inputs.password }}"
+          echo "::add-mask::${{ github.event.inputs.tool_user }}"
+          echo "::add-mask::${{ github.event.inputs.tool_pass }}"
+          
       - name: Run Python script
         shell: bash
         env:
