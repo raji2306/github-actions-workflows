@@ -31,11 +31,13 @@ jobs:
       - name: Export faceless user and password
         shell: bash
         run: |
-          # # Retrieve inputs
-          # echo "BINDUSER=${{ github.event.inputs.user }}" >> $GITHUB_ENV
-          # echo "BINDPASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
-          # echo "TOOLUSER=${{ github.event.inputs.tool_user }}" >> $GITHUB_ENV
-          # echo "TOOLPASS=${{ github.event.inputs.tool_pass }}" >> $GITHUB_ENV
+        
+          # # # Retrieve inputs
+          # # echo "BINDUSER=${{ github.event.inputs.user }}" >> $GITHUB_ENV
+          # # echo "BINDPASSWORD=${{ github.event.inputs.password }}" >> $GITHUB_ENV
+          # # echo "TOOLUSER=${{ github.event.inputs.tool_user }}" >> $GITHUB_ENV
+          # # echo "TOOLPASS=${{ github.event.inputs.tool_pass }}" >> $GITHUB_ENV
+          # w
           
           # Mask sensitive values
           echo "::add-mask::${{ github.event.inputs.user }}"
