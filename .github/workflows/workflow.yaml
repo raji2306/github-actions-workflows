@@ -35,10 +35,10 @@ jobs:
           
           import os
           # Retrieve sensitive data from GitHub Actions inputs
-          user = os.getenv('INPUT_USER')
-          password = os.getenv('INPUT_PASSWORD')
-          tool_user = os.getenv('INPUT_TOOL_USER')
-          tool_password = os.getenv('INPUT_TOOL_PASS')
+          user = os.getenv('BINDUSER')
+          password = os.getenv('BINDPASSWORD')
+          tool_user = os.getenv('TOOLUSER')
+          tool_password = os.getenv('TOOLPASS')
           
           # Mask sensitive values by printing them in a masked form
           def mask_sensitive_data(data):
@@ -46,18 +46,23 @@ jobs:
                   return "None"  # Or you can return an empty string or some other indicator
               return '*' * len(data)
           
-          # Mask the inputs (not printing GitHub Actions format)
+          # Mask the inputs
           masked_user = mask_sensitive_data(user)
           masked_password = mask_sensitive_data(password)
           masked_tool_user = mask_sensitive_data(tool_user)
           masked_tool_password = mask_sensitive_data(tool_password)
           
-          # Here you can just print the masked values, but they won't be output in GitHub Actions log
+          # Print the masked values
           print(f"Masked User: {masked_user}")
           print(f"Masked Password: {masked_password}")
           print(f"Masked Tool User: {masked_tool_user}")
           print(f"Masked Tool Password: {masked_tool_password}")
           EOF
+        env:
+          BINDUSER: ${{ github.event.inputs.user }}
+          BINDPASSWORD: ${{ github.event.inputs.password }}
+          TOOLUSER: ${{ github.event.inputs.tool_user }}
+          TOOLPASS: ${{ github.event.inputs.tool_pass }}
          
 
       # - name: Export faceless user and password
