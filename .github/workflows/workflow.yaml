@@ -22,44 +22,33 @@ on:
 
 jobs:
   export_vars:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Export faceless user and password
-        shell: powershell
+        shell: bash
         run: |
-          # Using Here-String to handle special characters and preserve the raw input
-          $rawUser = @"
-          ${{ github.event.inputs.user }}
-          "@
+          # Retrieve inputs
+          rawUser="${{ github.event.inputs.user }}"
+          rawPassword="${{ github.event.inputs.password }}"
+          rawToolUser="${{ github.event.inputs.tool_user }}"
+          rawToolPass="${{ github.event.inputs.tool_pass }}"
 
-          $rawPassword = @"
-          ${{ github.event.inputs.password }}
-          "@
-          
-          $rawToolUser = @"
-          ${{ github.event.inputs.tool_user }}
-          "@
-          
-          $rawToolPass = @"
-          ${{ github.event.inputs.tool_pass }}
-          "@
-          
-          # Masking sensitive values
-          echo "::add-mask::${{ github.event.inputs.user }}"
-          echo "::add-mask::${{ github.event.inputs.password }}"
-          echo "::add-mask::${{ github.event.inputs.tool_user }}"
-          echo "::add-mask::${{ github.event.inputs.tool_pass }}"
-          
+          # Mask sensitive values
+          echo "::add-mask::${rawUser}"
+          echo "::add-mask::${rawPassword}"
+          echo "::add-mask::${rawToolUser}"
+          echo "::add-mask::${rawToolPass}"
+
       - name: Run Python script
-        shell: powershell
+        shell: bash
         env:
           BINDUSER: ${{ github.event.inputs.user }}
           BINDPASSWORD: ${{ github.event.inputs.password }}
           TOOLUSER: ${{ github.event.inputs.tool_user }}
           TOOLPASS: ${{ github.event.inputs.tool_pass }}
         run: |
-          python pass_validate.py
+          python3 pass_validate.py
