@@ -32,10 +32,10 @@ jobs:
         shell: bash
         run: |
           # Retrieve inputs
-          rawUser="${{ github.event.inputs.user }}"
-          rawPassword="${{ github.event.inputs.password }}"
-          rawToolUser="${{ github.event.inputs.tool_user }}"
-          rawToolPass="${{ github.event.inputs.tool_pass }}"
+          rawUser=$(printf '%s' "${{ github.event.inputs.user }}")
+          rawPassword=$(printf '%s' "${{ github.event.inputs.password }}")
+          rawToolUser=$(printf '%s' "${{ github.event.inputs.tool_user }}")
+          rawToolPass=$(printf '%s' "${{ github.event.inputs.tool_pass }}")
 
           # Mask sensitive values
           echo "::add-mask::${rawUser}"
